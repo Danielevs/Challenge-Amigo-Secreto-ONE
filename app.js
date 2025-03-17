@@ -36,13 +36,6 @@ function sortearAmigo() {
         alert("A lista de amigos está vazia! Adicione nomes antes de sortear.");
         return;
     }
-      // Verifica se o campo está vazio
-      if (!nomeAmigo) {
-        alert("Por favor, preencha o campo com o nome do amigo antes de adicionar!");
-        inputAmigo.focus(); // Move o foco para o campo de entrada
-        return;
-    }
-
     // Sorteia um nome aleatoriamente
     let indiceSorteado = Math.floor(Math.random() * amigos.length);
     let amigoSorteado = amigos[indiceSorteado];
