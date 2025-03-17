@@ -1,29 +1,53 @@
-
 let amigos = [];
 
-function adicionarAmigo(){
+function adicionarAmigo() {
     let inputAmigo = document.getElementById('amigo');
-    let nomeAmigo = inputAmigo.value;
-    
-    //Verifica se o nome foi digitado
-    if(!nomeAmigo){
-        alert("Digite o nome do amigo!");
+    let nomeAmigo = inputAmigo.value.trim();
 
+    // Verifica se o nome foi digitado
+    if (!nomeAmigo) {
+        alert("Digite o nome do amigo!");
         return;
     }
-    //Adiciona o nome no array 
+
+    // Adiciona o nome ao array
     amigos.push(nomeAmigo);
-    amigos.value = ""
-    amigos.focus();
+    inputAmigo.value = ""; // Limpa o campo de entrada
+    inputAmigo.focus(); // Define o foco no campo de entrada
+
+    // Atualiza a lista na tela
+    atualizarLista();
 }
 
-    //Renderiza lista na tela
+function atualizarLista() {
+    let listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = ""; // Limpa a lista anterior
 
-    function atualizarLista(){
-        let listaAmigos = document.getElementById("listaAmigos");
-        listaAmigos.innerHTML = " ";
-
-        for (let i=0; i < amigos.length; i++){
-            
-        }
+    // Adiciona os nomes do array na lista
+    for (let i = 0; i < amigos.length; i++) {
+        let item = document.createElement("li");
+        item.textContent = amigos[i];
+        listaAmigos.appendChild(item); // Adiciona o item à lista
     }
+}
+
+function sortearAmigo() {
+    if (amigos.length === 0) {
+        alert("A lista de amigos está vazia! Adicione nomes antes de sortear.");
+        return;
+    }
+      // Verifica se o campo está vazio
+      if (!nomeAmigo) {
+        alert("Por favor, preencha o campo com o nome do amigo antes de adicionar!");
+        inputAmigo.focus(); // Move o foco para o campo de entrada
+        return;
+    }
+
+    // Sorteia um nome aleatoriamente
+    let indiceSorteado = Math.floor(Math.random() * amigos.length);
+    let amigoSorteado = amigos[indiceSorteado];
+
+    // Exibe o resultado na tela
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `<li>${amigoSorteado}</li>`;
+}
